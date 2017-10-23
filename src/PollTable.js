@@ -8,7 +8,7 @@ export default class {
 
         new Loader().appendTo(this._node);
 
-        $.ajax(`http://www.strawpoll.me/api/v2/polls/${id}`)
+        $.ajax(`https://www.strawpoll.me/api/v2/polls/${id}`)
             .then(
                 (poll) => {
                     $(this._node).empty();
