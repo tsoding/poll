@@ -2,6 +2,12 @@ import $ from 'jquery';
 import Loader from './Loader.js';
 import PollRow from './PollRow.js';
 
+function projectIdFromTitle(title) {
+    let projectIdRegexp = /#(\w+)/g;
+    let match = projectIdRegexp.exec(title);
+    return match ? match[1] : undefined;
+}
+
 export default class {
     constructor(id, coefficients) {
         this._node = $("<div>");
@@ -15,19 +21,14 @@ export default class {
 
                     poll['options']
                         .map(
-                            (option, index) => {
-                                let coefficient = typeof coefficients[option] !== 'undefined' ? coefficients[option] : 1.0;
-                                return [option, Math.ceil(poll['votes'][index] * coefficient)];
-                            }
+                            (title, index) => new PollRow(
+                                title,
+                                poll['votes'][index],
+                                coefficients[projectIdFromTitle(title)]
+                            )
                         )
-                        .sort(
-                            (item1, item2) => item2[1] - item1[1]
-                        )
-                        .forEach(
-                            (item) => {
-                                new PollRow(item[0], item[1]).appendTo(this._node);
-                            }
-                        );
+                        .sort((row1, row2) => row2.compare(row1))
+                        .forEach((row) => row.appendTo($(this._node)));
                 }
             );
 

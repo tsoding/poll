@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import PollTable from './PollTable.js';
 
-new PollTable(13807851, {
-    'Web-site in ASM': 0.9
+new PollTable(14220953, {
+    'foo': 0.9,
+    'bar': 100.0,
+    'baz': 0.0
 }).appendTo($('#poll'));
