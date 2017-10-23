@@ -6,7 +6,7 @@ export default class {
         this._votes = votes;
         this._coefficient = coefficient;
         this._effectiveVotes = Math.ceil(this._votes * this._coefficient);
-        this._node = $(`<div>${this._effectiveVotes} (${this._coefficient}): ${title}</div>`);
+        this._node = $(`<div>${title} (ev=${this._effectiveVotes};c=${this._coefficient};ov=${this._votes})</div>`);
     }
 
     appendTo(entry) {
