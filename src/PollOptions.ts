@@ -1,6 +1,6 @@
-import $ from 'jquery';
-import Loader from './Loader.js';
-import PollRow from './PollRow.js';
+import * as $ from 'jquery';
+import Loader from './Loader';
+import PollRow from './PollRow';
 
 function projectIdFromTitle(title) {
     let projectIdRegexp = /#(\w+)/g;
@@ -8,16 +8,18 @@ function projectIdFromTitle(title) {
     return match ? match[1] : undefined;
 }
 
-export default class {
-    constructor(id, coefficients) {
-        this._node = $("<div>");
+export default class PollOptions {
+    private node: any;
 
-        new Loader().appendTo(this._node);
+    constructor(id, coefficients) {
+        this.node = $("<div>");
+
+        new Loader().appendTo(this.node);
 
         $.ajax(`https://www.strawpoll.me/api/v2/polls/${id}`)
             .then(
                 (poll) => {
-                    $(this._node).empty();
+                    $(this.node).empty();
 
                     poll['options']
                         .map(
@@ -28,13 +30,13 @@ export default class {
                             )
                         )
                         .sort((row1, row2) => row2.compare(row1))
-                        .forEach((row) => row.appendTo(this._node));
+                        .forEach((row) => row.appendTo(this.node));
                 }
             );
     }
 
     appendTo(entry) {
-        $(entry).append(this._node);
+        $(entry).append(this.node);
         return this;
     }
 }

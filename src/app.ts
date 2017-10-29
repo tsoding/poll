@@ -1,5 +1,5 @@
-import $ from 'jquery';
-import PollTable from './PollTable.js';
+import * as $ from 'jquery';
+import PollTable from './PollTable';
 
 new PollTable(14222115, {
     'wassm': 0.8,

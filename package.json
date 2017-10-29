@@ -2,19 +2,19 @@
   "name": "poll",
   "version": "1.0.0",
   "description": "Web tools for calculating the final results of Morning Tsoding Plannings",
-  "main": "index.js",
   "scripts": {
-    "bundle": "browserify ./src/app.js -t babelify -g uglifyify --outfile build/bundle.js",
+    "bundle": "browserify ./src/app.ts -p tsify -g uglifyify --outfile build/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Alexey Kutepov <reximkut@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "babel-preset-env": "^1.6.1",
-    "babelify": "^7.3.0",
+    "@types/jquery": "^3.2.15",
     "browserify": "^14.5.0",
     "jquery": "^3.2.1",
+    "tsify": "^3.0.3",
+    "typescript": "^2.5.3",
     "uglifyify": "^4.0.4"
   }
 }
