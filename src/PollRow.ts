@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
+import UiComponent from './UiComponent';
 
-export default class PollRow {
+export default class PollRow implements UiComponent {
     private title: string;
     private votes: number;
     private coefficient: number;

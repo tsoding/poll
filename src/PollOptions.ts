@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import Loader from './Loader';
 import PollRow from './PollRow';
+import UiComponent from './UiComponent';
 
 function projectIdFromTitle(title: string): string {
     let projectIdRegexp = /#(\w+)/g;
@@ -8,7 +9,7 @@ function projectIdFromTitle(title: string): string {
     return match ? match[1] : undefined;
 }
 
-export default class PollOptions {
+export default class PollOptions implements UiComponent {
     private node: JQuery<HTMLElement>;
 
     constructor(id: number, coefficients: Map<string, number>) {

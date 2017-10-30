@@ -1,7 +1,8 @@
 import * as $ from 'jquery';
 import PollOptions from './PollOptions';
+import UiComponent from './UiComponent';
 
-export default class {
+export default class PollTable implements UiComponent {
     private node: JQuery<HTMLElement>;
 
     constructor(id: number, coefficients: Map<string, number>) {
@@ -13,7 +14,7 @@ export default class {
         new PollOptions(id, coefficients).appendTo(this.node);
     }
 
-    appendTo(entry: JQuery<HTMLElement>) {
+    appendTo(entry: JQuery<HTMLElement>): this {
         entry.append(this.node);
         return this;
     }

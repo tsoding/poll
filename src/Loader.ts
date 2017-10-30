@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
+import UiComponent from './UiComponent'
 
-export default class Loader {
+export default class Loader implements UiComponent {
     private node: JQuery<HTMLElement>;
 
     constructor() {
