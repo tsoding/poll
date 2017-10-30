@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import Loader from './Loader';
 import PollRow from './PollRow';
+import PollData from './PollData'
 import UiComponent from './UiComponent';
 
 function projectIdFromTitle(title: string): string {
@@ -12,28 +13,26 @@ function projectIdFromTitle(title: string): string {
 export default class PollOptions implements UiComponent {
     private node: JQuery<HTMLElement>;
 
-    constructor(id: number, coefficients: Map<string, number>) {
+    constructor(pollData: Promise<PollData>, coefficients: Map<string, number>) {
         this.node = $("<div>");
-
         new Loader().appendTo(this.node);
 
-        $.ajax(`https://www.strawpoll.me/api/v2/polls/${id}`)
-            .then(
-                (poll) => {
-                    this.node.empty();
+        pollData.then(
+            (data) => {
+                this.node.empty();
 
-                    poll['options']
-                        .map(
-                            (title, index) => new PollRow(
-                                title,
-                                poll['votes'][index],
-                                coefficients.get(projectIdFromTitle(title))
-                            )
+                data.options
+                    .map(
+                        (title, index) => new PollRow(
+                            title,
+                            data.votes[index],
+                            coefficients.get(projectIdFromTitle(title))
                         )
-                        .sort((row1, row2) => row2.compare(row1))
-                        .forEach((row) => row.appendTo(this.node));
-                }
-            );
+                    )
+                    .sort((row1, row2) => row2.compare(row1))
+                    .forEach((row) => row.appendTo(this.node));
+            }
+        );
     }
 
     appendTo(entry: JQuery<HTMLElement>): this {
