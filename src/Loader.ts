@@ -8,7 +8,7 @@ export default class Loader {
     }
 
     appendTo(entry: JQuery<HTMLElement>): this {
-        $(entry).append(this.node);
+        entry.append(this.node);
         return this;
     }
 };

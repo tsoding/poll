@@ -14,7 +14,7 @@ export default class {
     }
 
     appendTo(entry: JQuery<HTMLElement>) {
-        $(entry).append(this.node);
+        entry.append(this.node);
         return this;
     }
 };

@@ -19,7 +19,7 @@ export default class PollOptions {
         $.ajax(`https://www.strawpoll.me/api/v2/polls/${id}`)
             .then(
                 (poll) => {
-                    $(this.node).empty();
+                    this.node.empty();
 
                     poll['options']
                         .map(
@@ -36,7 +36,7 @@ export default class PollOptions {
     }
 
     appendTo(entry: JQuery<HTMLElement>): this {
-        $(entry).append(this.node);
+        entry.append(this.node);
         return this;
     }
 }
