@@ -1,13 +1,15 @@
 import * as $ from 'jquery';
 
-export default class {
+export default class PollRow {
     private title: string;
-    private votes: any;
+    private votes: number;
     private coefficient: number;
     private effectiveVotes: number;
-    private node: any;
+    private node: JQuery<HTMLElement>;
 
-    constructor(title, votes, coefficient = 1.0) {
+    constructor(title: string,
+                votes: number,
+                coefficient: number = 1.0) {
         this.title = title;
         this.votes = votes;
         this.coefficient = coefficient;
@@ -15,12 +17,12 @@ export default class {
         this.node = $(`<div>${title} (ev=${this.effectiveVotes};c=${this.coefficient};ov=${this.votes})</div>`);
     }
 
-    appendTo(entry) {
+    appendTo(entry: JQuery<HTMLElement>): this {
         $(entry).append(this.node);
         return this;
     }
 
-    compare(otherRow) {
+    compare(otherRow: PollRow): number {
         return this.effectiveVotes - otherRow.effectiveVotes;
     }
 };

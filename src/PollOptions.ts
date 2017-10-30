@@ -2,16 +2,16 @@ import * as $ from 'jquery';
 import Loader from './Loader';
 import PollRow from './PollRow';
 
-function projectIdFromTitle(title) {
+function projectIdFromTitle(title: string): string {
     let projectIdRegexp = /#(\w+)/g;
     let match = projectIdRegexp.exec(title);
     return match ? match[1] : undefined;
 }
 
 export default class PollOptions {
-    private node: any;
+    private node: JQuery<HTMLElement>;
 
-    constructor(id, coefficients) {
+    constructor(id: number, coefficients: Map<string, number>) {
         this.node = $("<div>");
 
         new Loader().appendTo(this.node);
@@ -26,7 +26,7 @@ export default class PollOptions {
                             (title, index) => new PollRow(
                                 title,
                                 poll['votes'][index],
-                                coefficients[projectIdFromTitle(title)]
+                                coefficients.get(projectIdFromTitle(title))
                             )
                         )
                         .sort((row1, row2) => row2.compare(row1))
@@ -35,7 +35,7 @@ export default class PollOptions {
             );
     }
 
-    appendTo(entry) {
+    appendTo(entry: JQuery<HTMLElement>): this {
         $(entry).append(this.node);
         return this;
     }

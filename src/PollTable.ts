@@ -2,9 +2,9 @@ import * as $ from 'jquery';
 import PollOptions from './PollOptions';
 
 export default class {
-    private node: any;
+    private node: JQuery<HTMLElement>;
 
-    constructor(id, coefficients) {
+    constructor(id: number, coefficients: Map<string, number>) {
         this.node = $(`
           <div>
             <div>Poll: <a href="http://www.strawpoll.me/${id}">http://www.strawpoll.me/${id}</a></div>
@@ -13,7 +13,7 @@ export default class {
         new PollOptions(id, coefficients).appendTo(this.node);
     }
 
-    appendTo(entry) {
+    appendTo(entry: JQuery<HTMLElement>) {
         $(entry).append(this.node);
         return this;
     }
