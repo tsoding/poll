@@ -12,8 +12,4 @@ export default class Strawpoll implements Poll {
     data(): Promise<PollData> {
         return $.ajax(`https://www.strawpoll.me/api/v2/polls/${this.id}`);
     }
-
-    userUrl(): string {
-        return `http://www.strawpoll.me/${this.id}`;
-    }
 };
