@@ -4,12 +4,26 @@ import Strawpoll from './Strawpoll';
 import ArchivedPoll from './ArchivedPoll';
 
 new PollTable(
-    new Strawpoll(14222115),
+    new ArchivedPoll({
+        "id":14222115,
+        "title":"Morning Tsoding, November 2017",
+        "options":["Web framework in Assembly (#wassm)",
+                   "Graphics Library for Rust (#gross)",
+                   "Functional Programming Language in Scala (#morganey)",
+                   "Musical Game in C++ (#beatwave)",
+                   "Digital Music Looper in Rust (#dimooper)",
+                   "Chat Bot in Erlang (#tsoder)",
+                   "Neural Network in Haskell (#nnaskell)"],
+        "votes":[40,18,31,20,14,13,35],
+        "multi":true,
+        "dupcheck":"normal",
+        "captcha":false
+    }),
     new Map([
         ['wassm', 0.8],
         ['gross', 0.9]
     ])
-).appendTo($('#current-poll'));
+).appendTo($('#archived-polls'));
 
 new PollTable(
     new ArchivedPoll({
