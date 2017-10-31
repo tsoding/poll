@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Web tools for calculating the final results of Morning Tsoding Plannings",
   "scripts": {
+    "bundle-dev": "browserify ./src/app.ts -p tsify --outfile build/bundle.js",
     "bundle": "browserify ./src/app.ts -p tsify -g uglifyify --outfile build/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

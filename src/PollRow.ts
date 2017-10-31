@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
+import UiComponent from './UiComponent';
 
-export default class PollRow {
+export default class PollRow implements UiComponent {
     private title: string;
     private votes: number;
     private coefficient: number;
@@ -14,7 +15,12 @@ export default class PollRow {
         this.votes = votes;
         this.coefficient = coefficient;
         this.effectiveVotes = Math.ceil(this.votes * this.coefficient);
-        this.node = $(`<div>${title} (ev=${this.effectiveVotes};c=${this.coefficient};ov=${this.votes})</div>`);
+        this.node = $(`
+            <div class="poll-row">
+                <span class="poll-row-title">${title}</>
+                <span class="poll-row-stats">(ev=${this.effectiveVotes};c=${this.coefficient};ov=${votes})</span>
+            </div>
+        `);
     }
 
     appendTo(entry: JQuery<HTMLElement>): this {
