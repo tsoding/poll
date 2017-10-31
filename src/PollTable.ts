@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 
 import PollRow from './PollRow';
+import PollTitle from './PollTitle';
 import Loader from './Loader';
 import UiComponent from './UiComponent';
 
@@ -16,7 +17,7 @@ export default class PollTable implements UiComponent {
     private node: JQuery<HTMLElement>;
 
     constructor(poll: Poll, coefficients: Map<string, number>) {
-        this.node = $(`<div>`);
+        this.node = $(`<div class="poll-table">`);
 
         new Loader().appendTo(this.node);
 
@@ -24,6 +25,8 @@ export default class PollTable implements UiComponent {
             .then(
                 (data) => {
                     this.node.empty();
+
+                    new PollTitle(data.title).appendTo(this.node);
 
                     data.options
                         .map(

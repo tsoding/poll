@@ -5,7 +5,7 @@ export default class Loader implements UiComponent {
     private node: JQuery<HTMLElement>;
 
     constructor() {
-        this.node = $("<div class='loader'>Loading...</div>");
+        this.node = $("<div class='loader'></div>");
     }
 
     appendTo(entry: JQuery<HTMLElement>): this {
