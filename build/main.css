@@ -1,7 +1,11 @@
 body {
-    color: white;
-    background: black;
+    color: #e4e4ef;
+    background: #181818;
     font-family: monospace;
+    width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15px;
 }
 
 .poll-table {
@@ -17,6 +21,10 @@ body {
     color: #73c936;
 }
 
+.poll-row {
+    margin-top: 2px;
+}
+
 .loader {
     border: 4px solid #284028;
     border-top: 4px solid #73c936;
@@ -29,4 +37,16 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+#current-poll {
+    border: #73c936 1px solid;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+a {
+    color: #73c936;
 }
